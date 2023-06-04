@@ -1,0 +1,13 @@
+version: '1.0.0'
+name: ansible-playbook-bundle-template
+description: your role description
+bindable: False
+async: optional
+metadata:
+  displayName: ansible-playbook-bundle-template
+plans:
+  - name: default
+    description: This default plan deploys ansible-playbook-bundle-template
+    free: True
+    metadata: {}
+    parameters: []
