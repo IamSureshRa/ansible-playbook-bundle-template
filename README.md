@@ -3,6 +3,36 @@ APB Name
 
 A brief description of the APB goes here.
 
+Structure
+------------
+
+```
+.travis.yml
+Dockerfile
+Makefile
+README.md
+apb.yml
+defaults/
+    main.yml
+files/
+handlers/
+    main.yml
+meta/
+    main.yml
+playbooks/
+    deprovision.yml
+    provision.yml
+tasks/
+    main.yml
+templates/
+tests/
+    ansible.cfg
+    inventory
+    test.yml
+vars/
+    main.yml
+```
+
 Requirements
 ------------
 
