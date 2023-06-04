@@ -1,0 +1,26 @@
+---
+
+name: Ansible Lint By reviewdog
+on: [pull_request]
+jobs:
+  reviewdog-ansible-lint:
+    name: reviewdog / ansible-lint / yaml-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: ansible-lint-reviewdog
+        uses: reviewdog/action-ansiblelint@v1.6.2
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review    # Change reporter.
+          # ansiblelint_flags: '-x core .'
+          ansiblelint_version: 6.17.0
+      - name: yamllint-reviewdog
+        uses: reviewdog/action-yamllint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review    # Change reporter.
+          # yamllint_flags: 'src/'
