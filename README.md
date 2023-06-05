@@ -3,8 +3,8 @@ APB Name
 
 A brief description of the APB goes here.
 
-Structure
-------------
+Playbook Bundle Structure
+-------------------------
 
 ```
 .travis.yml
@@ -31,6 +31,69 @@ tests/
     test.yml
 vars/
     main.yml
+```
+
+Playbook Structure with inventories and vars on root
+----------------------------------------------------
+
+```
+production                # inventory file for production servers
+staging                   # inventory file for staging environment
+
+group_vars/
+   group1.yml             # here we assign variables to particular groups
+   group2.yml
+host_vars/
+   hostname1.yml          # here we assign variables to particular systems
+   hostname2.yml
+
+library/                  # if any custom modules, put them here (optional)
+module_utils/             # if any custom module_utils to support modules, put them here (optional)
+filter_plugins/           # if any custom filter plugins, put them here (optional)
+
+site.yml                  # main playbook
+webservers.yml            # playbook for webserver tier
+dbservers.yml             # playbook for dbserver tier
+tasks/                    # task files included from playbooks
+    webservers-extra.yml  # <-- avoids confusing playbook with task files
+```
+
+Playbook Structure with inventories and vars within environment
+---------------------------------------------------------------
+
+```
+inventories/
+   production/
+      hosts               # inventory file for production servers
+      group_vars/
+         group1.yml       # here we assign variables to particular groups
+         group2.yml
+      host_vars/
+         hostname1.yml    # here we assign variables to particular systems
+         hostname2.yml
+
+   staging/
+      hosts               # inventory file for staging environment
+      group_vars/
+         group1.yml       # here we assign variables to particular groups
+         group2.yml
+      host_vars/
+         stagehost1.yml   # here we assign variables to particular systems
+         stagehost2.yml
+
+library/
+module_utils/
+filter_plugins/
+
+site.yml
+webservers.yml
+dbservers.yml
+
+roles/
+    common/
+    webtier/
+    monitoring/
+    fooapp/
 ```
 
 Requirements
